@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101827">
+  <title>1142928 HW06 — Tic-Tac-Toe</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Tic Tac Toe 首頁">
+        <span class="brand-mark">XO</span>
+        <span><strong>TACTIC</strong><small>1142928 · HW06</small></span>
+      </a>
+      <div class="top-actions">
+        <span class="mode-pill"><i></i> UNBEATABLE AI</span>
+        <button id="soundToggle" class="icon-button" type="button" aria-label="切換音效" title="切換音效">♫</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow">A LITTLE GAME OF STRATEGY</p>
+      <h1>井字棋<span>.</span></h1>
+      <p class="subtitle">你先手，AI 後手。試著戰勝不敗的策略。</p>
+    </section>
+
+    <section class="game-layout" aria-label="井字棋遊戲">
+      <div class="game-panel">
+        <div class="players">
+          <div class="player-card active" id="playerCard">
+            <div class="player-symbol x-symbol">×</div>
+            <div><span class="player-name">YOU</span><strong>玩家</strong></div>
+            <span class="turn-indicator">YOUR TURN</span>
+          </div>
+          <div class="versus">VS</div>
+          <div class="player-card" id="computerCard">
+            <div class="player-symbol o-symbol">○</div>
+            <div><span class="player-name">COMPUTER</span><strong>電腦</strong></div>
+            <span class="turn-indicator">AI THINKING</span>
+          </div>
+        </div>
+
+        <div class="status-line" aria-live="polite">
+          <span class="status-dot"></span>
+          <span id="statusText">輪到你了，選擇一個空格開始。</span>
+        </div>
+
+        <div class="board-wrap">
+          <div class="board" id="board" role="group" aria-label="井字棋棋盤">
+            <button class="cell" data-index="0" aria-label="第 1 格，空格"></button>
+            <button class="cell" data-index="1" aria-label="第 2 格，空格"></button>
+            <button class="cell" data-index="2" aria-label="第 3 格，空格"></button>
+            <button class="cell" data-index="3" aria-label="第 4 格，空格"></button>
+            <button class="cell" data-index="4" aria-label="第 5 格，空格"></button>
+            <button class="cell" data-index="5" aria-label="第 6 格，空格"></button>
+            <button class="cell" data-index="6" aria-label="第 7 格，空格"></button>
+            <button class="cell" data-index="7" aria-label="第 8 格，空格"></button>
+            <button class="cell" data-index="8" aria-label="第 9 格，空格"></button>
+          </div>
+          <div class="thinking" id="thinking"><span></span><span></span><span></span> AI 思考中</div>
+        </div>
+
+        <div class="game-controls">
+          <button id="restartButton" class="primary-button" type="button"><span>↻</span> 再玩一局</button>
+          <button id="resetScoreButton" class="text-button" type="button">重設統計</button>
+        </div>
+      </div>
+
+      <aside class="side-panel">
+        <div class="score-card">
+          <div class="section-heading"><span>SESSION</span><span class="live-label">● LIVE</span></div>
+          <h2>對戰紀錄</h2>
+          <div class="score-grid">
+            <div class="score-item"><span class="score-icon x-tint">×</span><strong id="playerWins">0</strong><small>玩家勝利</small></div>
+            <div class="score-item"><span class="score-icon draw-tint">＝</span><strong id="draws">0</strong><small>平手</small></div>
+            <div class="score-item"><span class="score-icon o-tint">○</span><strong id="computerWins">0</strong><small>電腦勝利</small></div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="section-heading"><span>HOW TO PLAY</span><span class="info-number">01 / 02</span></div>
+          <h2>遊戲規則</h2>
+          <ul class="rules">
+            <li><span>01</span> 你是 X，電腦是 O。</li>
+            <li><span>02</span> 先連成橫、直或斜線的三格獲勝。</li>
+            <li><span>03</span> 棋盤填滿且無人連線則為平手。</li>
+          </ul>
+        </div>
+
+        <div class="tip-card">
+          <span class="tip-icon">✦</span>
+          <div><strong>小提示</strong><p>AI 使用 Minimax 演算法評估所有可能走法，因此在正確運作下不會輸。</p></div>
+        </div>
+      </aside>
+    </section>
+
+    <footer><span>© 2026 · 1142928 HW06</span><span>BUILT WITH LOGIC & A LITTLE FUN</span></footer>
+  </main>
+
+  <div class="result-overlay" id="resultOverlay" aria-hidden="true">
+    <div class="result-modal">
+      <div class="result-symbol" id="resultSymbol">✦</div>
+      <p class="eyebrow">ROUND COMPLETE</p>
+      <h2 id="resultTitle">平手！</h2>
+      <p id="resultMessage">精彩的對局，再來一場吧。</p>
+      <button id="playAgainButton" class="primary-button" type="button">再玩一局 <span>→</span></button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
